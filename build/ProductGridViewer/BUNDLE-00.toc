@@ -1,0 +1,3 @@
+([('ProductGridViewer',
+   '/Users/kristinawong/Desktop/Work/Product Viewer/dist/ProductGridViewer',
+   'EXECUTABLE')],)
