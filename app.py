@@ -265,7 +265,7 @@ def run_server(port):
     global server
     server = make_server("127.0.0.1", port, app)
     server.serve_forever()
-
+'''
 if __name__ == "__main__":
     # 1) load default spreadsheet
     if current_excel_path:
@@ -297,4 +297,15 @@ if __name__ == "__main__":
     # 6) cleanup temp images
     shutil.rmtree(temp_image_dir, ignore_errors=True)
 
-    sys.exit(0)
+    sys.exit(0)'''
+if __name__ == "__main__":
+    # 1) load default spreadsheet if provided
+    if current_excel_path:
+        load_and_parse_excel(current_excel_path)
+
+    # 2) start the heartbeat monitor in the background
+    monitor = threading.Thread(target=heartbeat_monitor, daemon=True)
+    monitor.start()
+
+    # 3) serve the Flask app on the provided PORT (default 5000)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
